@@ -5,9 +5,9 @@
   </div>
 </template>
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+import {Component, Vue} from 'vue-property-decorator';
 @Component
-export default class Message extends Vue{
-  message: string = 'Please text some message'
+export default class Message extends Vue {
+  public message: string = 'Please text some message';
 }
 </script>
