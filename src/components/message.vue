@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input type="text" v-model="message">
-    <div>{{message}}</div>
+    <input type="text" v-model="message" message-msg>
+    <div class="message-contents">{{message}}</div>
   </div>
 </template>
 <script lang="ts">
