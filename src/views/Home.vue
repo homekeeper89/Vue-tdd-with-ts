@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png" />
     <children></children>
   </div>
 </template>
@@ -16,6 +17,6 @@ import children from "@/components/children.vue";
   }
 })
 export default class Home extends Vue {
-  @Provide('message') msg: string = ""
+  @Provide('message') msg: string = "provide / inject"
 }
 </script>
