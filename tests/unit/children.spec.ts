@@ -6,7 +6,7 @@ describe('Childern', ()=>{
     const build = ()=>{
         const wrapper = shallowMount(children, {
             propsData : {
-                parentMessge : message
+                parentMessge : message,
             }
         })
         return {
@@ -28,4 +28,10 @@ describe('Childern', ()=>{
         expect(wrapper.find('.children-info').exists()).toBe(true);
         expect(wrapper.find('.children-info').text()).toBe(message);
     })
+
+    it('button click, clickCount methods should be called', ()=>{
+        const {wrapper} = build()
+        wrapper.find('.children-btn-counter').trigger('click')
+        expect(wrapper.vm.$data.checkCount).toBe(20);
+    });
 })
