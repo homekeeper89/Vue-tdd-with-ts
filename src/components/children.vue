@@ -6,6 +6,7 @@
     <div class="children-alert">
       {{alertMessage}}
     </div>
+    <hr>
     <div class="children-btn">
       <button class="children-btn-counter" @click = "clickCount">부모 숫자 증가시키는 버튼 </button>
     </div>

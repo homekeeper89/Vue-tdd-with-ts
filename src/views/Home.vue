@@ -1,9 +1,11 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
+    <hr>
     <message></message>
-    <children :parentMessge="message" @counter="counter"></children>
+    <hr>
     <button class="home-btn" @click.prevent="changeMessage">메세지 변경</button>
+    <children :parentMessge="message" @counter="counterss"></children>
     <div class="home-message">부모에서 숫자를 보여줌 : {{count}}</div>
   </div>
 </template>
@@ -27,7 +29,7 @@ export default class Home extends Vue {
     this.message = "change";
   }
 
-  counter(){
+  counterss(){
     this.count++;
   }
 }
