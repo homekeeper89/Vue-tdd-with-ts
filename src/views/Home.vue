@@ -1,18 +1,34 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="../assets/logo.png" />
+    <my-checkbox v-model="checked" @myCustomClick="change"></my-checkbox>
+    <div>
+      {{text}}
+    </div>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import message from "@/components/message.vue";
+import children from "@/components/children.vue";
+import myCheckbox from '@/components/my-checkbox.vue';
+import practiceMixin from '@/components/practiceMixin.vue';
 
-export default {
-  name: 'home',
+@Component({
   components: {
-    HelloWorld
+    message,
+    children,
+    myCheckbox
+  }
+})
+export default class Home extends Vue {
+  checked:boolean = false;
+  text:string = "동의하지 않습니다."
+
+  change(checked:boolean){
+    this.checked = checked;
+    this.text = checked ? "동의합니다" : "동의하지 않습니다."
   }
 }
 </script>
