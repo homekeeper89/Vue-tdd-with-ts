@@ -13,6 +13,7 @@ import { Component, Vue } from "vue-property-decorator";
 import message from "@/components/message.vue";
 import children from "@/components/children.vue";
 import myCheckbox from '@/components/my-checkbox.vue';
+import practiceMixin from '@/components/practiceMixin.vue';
 
 @Component({
   components: {
