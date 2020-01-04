@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div data-qa="count-value">
     {{$store.getters.count}}
   </div>
 </template>

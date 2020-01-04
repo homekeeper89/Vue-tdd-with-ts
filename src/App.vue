@@ -5,8 +5,8 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
-    <button @click="increase">증가</button>
-    <button @click="decrease">감소</button>
+    <button @click="increase" data-qa="increase">증가</button>
+    <button @click="decrease" data-aq="decrease">감소</button>
     <count></count>
   </div>
 </template>
