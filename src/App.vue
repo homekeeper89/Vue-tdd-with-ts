@@ -5,9 +5,23 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <div>
+      {{$store.state}}
+    </div>
   </div>
 </template>
+<script lang="ts">
+import {Vue, Component} from 'vue-property-decorator';
 
+@Component
+export default class App extends Vue {
+  created(){
+    console.log(this.$store)
+    this.$store.dispatch('setRootData', 'testData');
+    this.$store.dispatch('moduleA/setRootData', 'I am ModuleA');
+  }
+}
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
