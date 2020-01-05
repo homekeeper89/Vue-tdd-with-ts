@@ -8,23 +8,24 @@
     <button @click="increase" data-qa="increase">증가</button>
     <button @click="decrease" data-aq="decrease">감소</button>
     <count></count>
+    <div>
+      {{$store.state}}
+    </div>
   </div>
 </template>
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator';
-import count from '@/components/count.vue'
-
+import {Action} from 'vuex-class';
+import count from '@/components/count.vue';
 @Component({
   components:{
     count
-  }
+    }
 })
 export default class App extends Vue {
-  increase(){
-    this.$store.dispatch('increaseCount')
-  }
+  @Action readonly increase;
+  @Action readonly decrease;
   created(){
-    console.log(this.$store)
     this.$store.dispatch('setRootData', 'testData');
     this.$store.dispatch('moduleA/setRootData', 'I am ModuleA');
   }

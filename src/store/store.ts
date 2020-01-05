@@ -29,11 +29,14 @@ const store:StoreOptions<RootState> = {
   },
   // ActionContext도 StoreOptions에 있으므로 타입 지정 안해도 됨
   actions:{
+    setRootData({commit}, data:string){
+      commit('setData', data)
+    },
     increaseCount({state, commit}){
       commit('setCount', state.count + 1);
     },
-    setRootData({commit}, data:string){
-      commit('setData', data)
+    decreaseCount({state, commit}){
+      commit('setCount', state.count - 1 )
     }
   },
   getters:{
