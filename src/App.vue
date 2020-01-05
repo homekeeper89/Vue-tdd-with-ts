@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <appHeader/>
-    <itemInput/>
-    <item/>
+    <item-input/>
+    <router-view></router-view>
   </div>
 </template>
 
