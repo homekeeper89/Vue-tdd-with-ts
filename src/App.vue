@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
+import {Vue, Component} from 'vue-property-decorator';
 import count from '@/components/count.vue'
 
 @Component({
@@ -19,12 +19,14 @@ import count from '@/components/count.vue'
     count
   }
 })
-export default class App extends Vue{
-  increase() {
+export default class App extends Vue {
+  increase(){
     this.$store.dispatch('increaseCount')
   }
-  decrease() {
-    this.$store.dispatch('decreaseCount')
+  created(){
+    console.log(this.$store)
+    this.$store.dispatch('setRootData', 'testData');
+    this.$store.dispatch('moduleA/setRootData', 'I am ModuleA');
   }
 }
 </script>
