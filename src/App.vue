@@ -1,42 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-    <button @click="increase" data-qa="increase">증가</button>
-    <button @click="decrease" data-aq="decrease">감소</button>
-    <count></count>
-    <div>
-      {{$store.state}}
-    </div>
+    <appHeader/>
+    <itemInput/>
+    <item/>
   </div>
 </template>
+
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator';
-import {Action} from 'vuex-class';
-import count from '@/components/count.vue';
+import appHeader from '@/components/header.vue';
+import item from '@/components/item.vue';
+import itemInput from '@/components/item-input.vue';
+
 @Component({
   components:{
-    count
-    }
+    appHeader, item, itemInput
+  }
 })
 export default class App extends Vue {
-  @Action readonly increase;
-  @Action readonly decrease;
-  created(){
-    this.$store.dispatch('setRootData', 'testData');
-    this.$store.dispatch('moduleA/setRootData', 'I am ModuleA');
-  }
+
 }
 </script>
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  #app{
+    padding:100px;
+  }
 </style>
