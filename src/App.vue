@@ -5,6 +5,9 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <button @click="increase" data-qa="increase">증가</button>
+    <button @click="decrease" data-aq="decrease">감소</button>
+    <count></count>
     <div>
       {{$store.state}}
     </div>
@@ -12,9 +15,19 @@
 </template>
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator';
-
-@Component
+import count from '@/components/count.vue';
+@Component({
+  components:{
+    count
+    }
+})
 export default class App extends Vue {
+  increase() {
+    this.$store.dispatch('increaseCount')
+  }
+  decrease() {
+    this.$store.dispatch('decreaseCount')
+  }
   created(){
     console.log(this.$store)
     this.$store.dispatch('setRootData', 'testData');
@@ -29,18 +42,5 @@ export default class App extends Vue {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
