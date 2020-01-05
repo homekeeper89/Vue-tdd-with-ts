@@ -1,30 +1,22 @@
-import { Module } from 'vuex';
-import { RootState } from '@/store/store'
-
-
-interface moduleA {
-    data: string;
-}
-
-const module: Module<moduleA, RootState> = {
+import {Module, Mutation, VuexModule, Action} from 'vuex-module-decorators';
+@Module({
     namespaced:true,
-    state: {
-        data: 'moduleA'
-    },
-    mutations: {
-        setData(state, data: string) {
-            state.data = data;
-        }
-    },
-    // ActionContext도 StoreOptions에 있으므로 타입 지정 안해도 됨
-    actions: {
-        setRootData({ commit }, data: string) {
-            commit('setData', data)
-        }
-    },
-    getters: {
-        data: (state) => state.data
+    name:'myCustomModule'
+})
+export default class ModuleA extends VuexModule{
+    data:string = 'moduleA';
+    
+    @Mutation
+    setData(data:string){
+        this.data = data;
+    }
+
+    @Action
+    editData(data:string){
+        this.context.commit('setData', data);
+    }
+
+    get getData() {
+        return this.data;
     }
 }
-
-export default module
