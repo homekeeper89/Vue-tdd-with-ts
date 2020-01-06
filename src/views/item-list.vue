@@ -32,7 +32,7 @@ export default class ItemList extends Vue {
     if(!newValue){
       this.rednerList = this.data;
     }else if(newValue == 'active' || newValue == 'clear'){
-      this.rednerList = this.data.slice().filter((item:any)=>{
+      this.rednerList = this.data.filter((item:any)=>{
         return item.status === newValue;
       })
     }
