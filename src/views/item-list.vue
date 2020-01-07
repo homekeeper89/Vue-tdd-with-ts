@@ -31,17 +31,26 @@ export default class ItemList extends Vue {
 
   rednerList: any[] = []
   created(){
-    this.rednerList = this.allTodoList;
+    this.initRenderList(this.$route.params.status)
   }
+
   @Watch('$route.params.status')
-  routeUpdate(newValue:string){
-    if(!newValue){
+  routeUpdate(newValue:'active'|'clear'){
+    this.initRenderList(newValue);
+  }
+
+  initRenderList(status:'active'|'clear'){
+    if(!status){
       this.rednerList = this.allTodoList;
-    }else if(newValue == 'active'){
+    }else if(status == 'active'){
       this.rednerList = this.activeTodoList
     }else{
       this.rednerList = this.clearTodoList
     }
+  }
+  @Watch('$store.state.todoList', {deep:true})
+  updateTodoList(){
+    this.initRenderList(this.$route.params.status);
   }
 }
 </script>
