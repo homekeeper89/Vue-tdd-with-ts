@@ -25,8 +25,9 @@ const store: StoreOptions<State> = {
     }
   },
   actions: {
-    initData({ commit }) {
-      const response :AxiosResponse<todoList:item[]> = AxiosService.instance.get('data.json')
+    async initData({ commit }) {
+      const response :AxiosResponse<{todoList:Item[]}> = await AxiosService.instance.get('data.json')
+      commit('setTodoList',response.data.todoList)
     }
   },
   getters: {
