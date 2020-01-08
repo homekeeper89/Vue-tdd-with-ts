@@ -1,9 +1,9 @@
-export interface Item{
-    id:number;
-    title:string;
-    status:"active"|"clear";
+export interface Item {
+    id: number;
+    title: string;
+    status: 'active'|'clear';
 }
 
-export interface State{
-    todoList:Item[];
+export interface State {
+    todoList: Item[];
 }

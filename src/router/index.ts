@@ -6,10 +6,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path:'/:status?',
-    name:'item-list',
-    component: itemList
-  }
+    path: '/:status?',
+    name: 'item-list',
+    component: itemList,
+  },
 ];
 
 const router = new VueRouter({

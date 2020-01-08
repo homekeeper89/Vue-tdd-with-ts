@@ -11,46 +11,52 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from "vue-property-decorator";
-import item from "@/components/item.vue";
+import { Vue, Component, Watch } from 'vue-property-decorator';
+import item from '@/components/item.vue';
 import {mapGetters} from 'vuex';
 
 @Component({
   components: {
-    item
+    item,
   },
-  computed:{
+  computed: {
     ...mapGetters([
       'allTodoList',
       'activeTodoList',
-      'clearTodoList'
-    ])
-  }
+      'clearTodoList',
+    ]),
+  },
 })
 export default class ItemList extends Vue {
 
-  rednerList: any[] = []
-  created(){
-    this.initRenderList(this.$route.params.status)
+  rednerList: any[] = [];
+
+  allTodoList!: any[];
+  activeTodoList!: any[];
+  clearTodoList!: any[];
+
+  created() {
+    this.$store.dispatch('initData');
   }
 
   @Watch('$route.params.status')
-  routeUpdate(newValue:'active'|'clear'){
+  routeUpdate(newValue: 'active'|'clear') {
     this.initRenderList(newValue);
   }
 
-  initRenderList(status:'active'|'clear'){
-    if(!status){
+  initRenderList(status: string) {
+    if (!status) {
       this.rednerList = this.allTodoList;
-    }else if(status == 'active'){
-      this.rednerList = this.activeTodoList
-    }else{
-      this.rednerList = this.clearTodoList
+    } else if (status === 'active') {
+      this.rednerList = this.activeTodoList;
+    } else {
+      this.rednerList = this.clearTodoList;
     }
   }
-  @Watch('$store.state.todoList', {deep:true})
-  updateTodoList(){
-    this.initRenderList(this.$route.params.status);
+  @Watch('$store.state.todoList', {deep: true})
+  updateTodoList() {
+    const status: string = this.$route.params.status;
+    this.initRenderList(status);
   }
 }
 </script>

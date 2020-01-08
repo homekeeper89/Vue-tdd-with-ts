@@ -28,20 +28,20 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Item extends Vue {
   @Prop() readonly id!: number;
   @Prop() readonly title!: string;
-  @Prop() readonly status!: "active" | "clear";
+  @Prop() readonly status!: 'active' | 'clear';
 
   changeStatus($event: Event) {
-    const checked: boolean = $event.target.checked;
+    const checked: boolean = ($event.target as HTMLInputElement).checked;
     if (checked) {
-      this.$store.commit("changeItemStatus", { id: this.id, status: "clear" });
+      this.$store.commit('changeItemStatus', { id: this.id, status: 'clear' });
     } else {
-      this.$store.commit("changeItemStatus", { id: this.id, status: "active" });
+      this.$store.commit('changeItemStatus', { id: this.id, status: 'active' });
     }
   }
   removeItem() {
