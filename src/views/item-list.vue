@@ -31,7 +31,7 @@ export default class ItemList extends Vue {
 
   rednerList: any[] = []
   created(){
-    this.initRenderList(this.$route.params.status)
+    this.$store.dispatch('initData')
   }
 
   @Watch('$route.params.status')
