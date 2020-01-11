@@ -37,7 +37,7 @@ export default class Item extends Vue {
   @Prop() readonly status!: 'active' | 'clear';
 
   changeStatus($event: Event) {
-    const checked: boolean = ($event.target as HTMLInputElement).checked;
+    const checked: boolean = ($event.target as HTMLInputElement).checked; 
     if (checked) {
       this.$store.commit('changeItemStatus', { id: this.id, status: 'clear' });
     } else {
