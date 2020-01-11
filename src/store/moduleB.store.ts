@@ -1,5 +1,5 @@
 import { Module } from 'vuex';
-import { RootState } from '@/store/store'
+import { RootState } from '@/store/store';
 
 
 interface moduleB {
@@ -8,22 +8,22 @@ interface moduleB {
 
 const module: Module<moduleB, RootState> = {
     state: {
-        data: 'moduleB'
+        data: 'moduleB',
     },
     mutations: {
         setData(state, data: string) {
             state.data = data;
-        }
+        },
     },
     // ActionContext도 StoreOptions에 있으므로 타입 지정 안해도 됨
     actions: {
         setRootData({ commit }, data: string) {
-            commit('setData', data)
-        }
+            commit('setData', data);
+        },
     },
     getters: {
-        data: (state) => state.data
-    }
-}
+        data: (state) => state.data,
+    },
+};
 
-export default module
+export default module;
