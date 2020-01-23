@@ -29,28 +29,28 @@ import {mapGetters} from 'vuex';
 })
 export default class ItemList extends Vue {
 
-  rednerList: any[] = [];
-
-  allTodoList!: any[];
-  activeTodoList!: any[];
-  clearTodoList!: any[];
-
-  created() {
-    this.$store.dispatch('initData');
+  rednerList: any[] = []
+  created(){
+    this.getTodoList(this.$route.params.status)
   }
 
   @Watch('$route.params.status')
-  routeUpdate(newValue: 'active'|'clear') {
-    this.initRenderList(newValue);
+  updateRoute(newValue:'active'|'clear'){
+    this.getTodoList(newValue);
   }
 
-  initRenderList(status: string) {
-    if (!status) {
+  @Watch('$store.state.todoList', {deep:true})
+  updateTodoList(){
+    this.getTodoList(this.$route.params.status)
+  }
+
+  getTodoList(status:'active'|'clear'){
+    if(!status){
       this.rednerList = this.allTodoList;
-    } else if (status === 'active') {
-      this.rednerList = this.activeTodoList;
-    } else {
-      this.rednerList = this.clearTodoList;
+    }else if(status == 'active'){
+      this.rednerList = this.activeTodoList
+    }else{
+      this.rednerList = this.clearTodoList
     }
   }
   @Watch('$store.state.todoList', {deep: true})

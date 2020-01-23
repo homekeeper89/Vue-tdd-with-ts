@@ -31,20 +31,19 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
-export default class Item extends Vue {
-  @Prop() readonly id!: number;
-  @Prop() readonly title!: string;
-  @Prop() readonly status!: 'active' | 'clear';
+export default class Item extends Vue{
+  @Prop() readonly id!:number;
+  @Prop() readonly title!:string;
+  @Prop() readonly status!:'active'|'clear'
 
-  changeStatus($event: Event) {
-    const checked: boolean = ($event.target as HTMLInputElement).checked; 
-    if (checked) {
-      this.$store.commit('changeItemStatus', { id: this.id, status: 'clear' });
-    } else {
-      this.$store.commit('changeItemStatus', { id: this.id, status: 'active' });
-    }
+  changeStatus($event:Event){
+    let status = $event.target.checked == true ? 'clear' : 'active';
+    this.$store.commit('changeItemStatus', {
+      id:this.id,
+      status:status
+    })
   }
-  removeItem() {
+  removeItem(){
     this.$store.commit('removeItemStatus', this.id);
   }
 }
